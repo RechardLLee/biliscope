@@ -5,11 +5,19 @@ all:
 
 .PHONY: chrome
 chrome:
-	zip biliscope_chrome.zip css/* img/logo* img/bililv.svg options/* scripts/* scripts/sitescripts/* changelog/* manifest.json
+	mkdir -p temp
+	cp -r css img options scripts changelog manifest.json temp/
+	cp changelog/background.js temp/background.js
+	cd temp && zip -r ../biliscope_chrome.zip *
+	rm -rf temp
 
 .PHONY: firefox
 firefox:
+	mkdir -p temp
 	cp manifest.json manifest-template.json
 	node tools/convertManifest.js manifest.json
-	zip biliscope_firefox.zip css/* img/logo* img/bililv.svg options/* scripts/* scripts/sitescripts/* changelog/* manifest.json
+	cp -r css img options scripts changelog manifest.json temp/
+	cp changelog/background.js temp/background.js
+	cd temp && zip -r ../biliscope_firefox.zip *
 	mv manifest-template.json manifest.json
+	rm -rf temp

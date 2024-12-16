@@ -53,7 +53,7 @@
     "open_in_tab": false
   },
   "background": {
-    "service_worker": "changelog/background.js"
+    "service_worker": "background.js"
   },
   "web_accessible_resources": [
     {
